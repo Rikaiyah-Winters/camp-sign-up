@@ -7,23 +7,22 @@
 <body>
     <div className="header">
         <h1>🎨Tallon Camp of Art & Design 🖌️</h1>
-        <a href="/list"><p>list</p></a>
     </div>
     <div className="sign-up-form">
         <h2>Artist Information</h2>
-        <form>
+        <form action="/addCamper" method="post">
             <div className="artist-info-input">
                 <label>
                     Full Name
                 </label>
-                <input type="text" name="name"/>
+                <input type="text" name="name" />
             </div>
 
             <div className="artist-info-input">
                 <label>
                     Age
                 </label>
-                <input type="text" name="age"> 
+                <input type="text" name="age">
             </div>
 
             <div className="artist-info-input">
@@ -53,11 +52,12 @@
                 </label>
                 <input type="text" name="tshirt"> <!--Might want to eventually make this into a range-->
             </div>
+            <button type="submit">Submit Here</button>
         </form>
-        <div className="button">
-            <button>Submit Here</button>
-        </div>
     </div>
+    <a href="/list">
+        <p>Sign Up List</p>
+    </a>
 </body>
 
 </html>

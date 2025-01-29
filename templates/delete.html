@@ -1,0 +1,36 @@
+<html>
+
+<head>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='villain.css') }}">
+</head>
+
+<body>
+    <div class="header">
+        <div>
+            <h3>Remove a Camper</h3>
+        </div>
+    </div>
+    <div class="content">
+        <div class="form">
+            <h2>REMOVE A CAMPER</h2>
+            <form action="/deleteCamper" method="post">
+                <div class="errors">
+                    {% for error in errors %}
+                    <div class="error">{{ error }}</div>
+                    {% endfor %}
+                </div>
+                <label>name</label>
+                <input type="text" name="name" />
+                <button type="submit">Remove Me!</button>
+            </form>
+        </div>
+    </div>
+    <a href="/list">
+        <p>Sign Up List</p>
+    </a>
+    <a href="/">
+        <p>Sign Up Form</p>
+    </a>
+</body>
+
+</html>

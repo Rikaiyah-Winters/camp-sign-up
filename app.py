@@ -24,11 +24,15 @@ class Camper(db.Model):
 
 @app.route("/", methods=["GET"])
 def camper_form():
-  return render_template("form.html")
+  return render_template("form.html", errors=[])
 
 @app.route("/list")
 def camper_list():
-   return render_template("camper-list.html", errors=[])
+   return render_template("list.html", campers=Camper.query.all())
+
+@app.route("/delete", methods=["GET"])
+def delete_camper():
+   return render_template("delete.html", errors=[])
 
 @app.route("/addCamper", methods=["POST"]) # this is the PROCESS of POSTING whatever the user submits in the form TO the Database
 def add_camper():
@@ -57,7 +61,7 @@ def add_camper():
      errors.append("That camper's name already exists!")
   
   if errors:
-     return render_template("camper-form.html", errors=errors)
+     return render_template("form.html", errors=errors)
   else:
      new_camper = Camper(name=name, 
                          age=age, 
@@ -67,8 +71,19 @@ def add_camper():
                          t_shirt_size=t_shirt_size)
      db.session.add(new_camper)
      db.session.commit()
-     return render_template("camper-list.html", campers=Camper.query.all())
-   
+     return render_template("list.html", campers=Camper.query.all())
+
+@app.route("/deleteCamper", methods=["POST"])
+def delete_user():
+   name = request.form.get("name")
+   camper = Camper.query.filter_by(name=name).first()
+   if camper:
+      db.session.delete(camper)
+      db.session.commit()
+      return render_template("list.html", campers=Camper.query.all())
+   else:
+      return render_template("delete.html", errors=["Oops! That camper doesn't exist!"])
+
 # Run the flask server
 if __name__ == "__main__":
     app.run()

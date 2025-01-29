@@ -7,26 +7,37 @@
 <body>
   <div class="header">
     <div>
-        <a href="/"><p>Form</p></a>
+      <a href="/">
+        <p>Sign Up Form</p>
+      </a>
     </div>
   </div>
 
+  {% for camper in campers %}
   <div class="content">
-    <div class="card">
-      <h2 class="card-name">Bugsy Betty</h2>
-      <img src="https://s3.amazonaws.com/media.skillcrush.com/skillcrush/wp-content/uploads/2019/09/betty.jpg"
-        class="card-image" />
-      <div class="card-body">
-        <p class="card-description">I'll just be here. Messin' up your app. It'll probably take you 3 hours to find that
-          one line of code that's destroying your life. Feel the rage. I feed on your anger and wasted time! Heh heh
-          heh.</p>
-        <h4>Interests</h4>
-        <p class="card-interests">Breaking websites and apps, destroying your soul, making you question why you're
-          learning programming to begin with</p>
-        <p class="card-date-added">Date added: August 27th, 2019</p>
-      </div>
+    <div class="camper-info">
+      <p>Name: {{camper.name}}</p>
+    </div>
+    <div class="camper-info">
+      <p>Age: {{camper.age}}</p>
+    </div>
+    <div class="camper-info">
+      <p>Phone Number: {{camper.phone_number}}</p>
+    </div>
+    <div class="camper-info">
+      <p>Email: {{camper.email}}</p>
+    </div>
+    <div class="camper-info">
+      <p>Address: {{camper.address}}</p>
+    </div>
+    <div class="camper-info">
+      <p>T-Shirt Size: {{camper.t_shirt_size}}</p>
     </div>
   </div>
+  {% endfor %}
+  <a href="/delete">
+    <p>Delete a Camper</p>
+  </a>
 </body>
 
 </html>
